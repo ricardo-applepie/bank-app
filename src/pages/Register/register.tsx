@@ -21,7 +21,7 @@ export default function Register() {
     const formKeys = Object.keys(formData);
     const isValid = formKeys.every((value) => value.length > 0);
     if(!isValid) return;
-    const url = 'http://localhost:4000/user'; // Replace with your URL
+    const url = 'https://bank-backend-nh15.onrender.com/user'; // Replace with your URL
 
     const options = {
       method: 'POST',
