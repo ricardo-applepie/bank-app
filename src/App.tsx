@@ -8,15 +8,16 @@ import Dashboard from './pages/dashboard/dashboard';
 function App() {
   return (
     <div className="App">
+      loaded
       <Routes>
         {/* Register Route */}
-        <Route path="*register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Login Route */}
-        <Route path="*login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Protected Route */}
-        <Route path="*account" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/account" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       </Routes>
     </div>
   );
