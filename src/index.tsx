@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Register from './pages/Register/register';
 import './App.css';
 import Login from './pages/login/Login';
@@ -14,6 +14,10 @@ const root = document.getElementById('root') as HTMLElement
 
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <>welcome</>,
+  },
   {
     path: "/register",
     element: <Register />,
@@ -30,9 +34,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <RouterProvider router={router} />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
