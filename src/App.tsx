@@ -1,13 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Register from './pages/Register/register';
+import Login from './pages/login/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './pages/dashboard/dashboard';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-            logged in
-      </header>
+      <Routes>
+        {/* Register Route */}
+        <Route path="/register" element={<Register />} />
+
+        {/* Login Route */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected Route */}
+        <Route path="/account" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      </Routes>
     </div>
   );
 }
