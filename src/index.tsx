@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Register from './pages/Register/register';
 import './App.css';
 import Login from './pages/login/Login';
@@ -30,7 +30,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <RouterProvider router={router} />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
