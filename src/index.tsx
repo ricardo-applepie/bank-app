@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App'; // Import your App component
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import BrowserRouter and Routes
+import { HashRouter, Routes, Route } from 'react-router-dom'; // Use HashRouter instead of BrowserRouter
 
 import Register from './pages/Register/register';
 import Login from './pages/login/Login';
@@ -14,21 +14,21 @@ const root = document.getElementById('root') as HTMLElement;
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Main Route */}
         <Route path="/" element={<App />} />
 
         {/* Register Route */}
-        <Route path="*/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Login Route */}
-        <Route path="*/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Protected Route */}
-        <Route path="*/account" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+        <Route path="/account" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
