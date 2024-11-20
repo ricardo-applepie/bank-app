@@ -18,7 +18,7 @@ function Dashboard() {
   }
 
   const handleSend = () => {
-   const url = 'https://bank-backend-nh15.onrender.com/create'; // Replace with your URL
+   const url = '/create'; // Replace with your URL
    const token = localStorage.getItem('token'); // Use your custom token name
 
     const options = {
@@ -52,7 +52,7 @@ function Dashboard() {
 
 
   useEffect(() => {
-   const url = 'https://bank-backend-nh15.onrender.com/account'; // Replace with your URL
+   const url = '/account'; // Replace with your URL
    const token = localStorage.getItem('token'); // Use your custom token name
 
     const options = {

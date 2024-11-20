@@ -17,7 +17,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const getUsers = () => {
-  const url = 'https://bank-backend-nh15.onrender.com/users'; // Replace with your URL
+  const url = '/users'; // Replace with your URL
 
   // Retrieve the token from localStorage
    const authToken = localStorage.getItem('token'); // Use your custom token name
@@ -51,7 +51,7 @@ export default function Login() {
     const formKeys = Object.keys(formData);
     const isValid = formKeys.every((value) => value.length > 0);
     if(!isValid) return;
-    const url = 'https://bank-backend-nh15.onrender.com/login'; // Replace with your URL
+    const url = '/login'; // Replace with your URL
 
     const options = {
       method: 'POST',
