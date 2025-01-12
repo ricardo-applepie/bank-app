@@ -14,7 +14,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Container>
           <div className="d-flex justify-content-between">
-            <a className="navbar-brand fw-bold" href="#">Milleon</a>
+            <span className="navbar-brand fw-bold"> Milleon</span>
             <div >
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
