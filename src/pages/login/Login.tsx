@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [formData, setFormData] = useState({username: "", password: ""});
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, showErrorMessage ] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
      const value = event.target.value;
@@ -49,6 +51,9 @@ export default function Login() {
  }
   const handleClick = () => {
     const formKeys = Object.keys(formData);
+    setLoading(true);
+    showErrorMessage(false);
+
     const isValid = formKeys.every((value) => value.length > 0);
     if(!isValid) return;
     const url = 'https://bank-backend-nh15.onrender.com/login'; // Replace with your URL
@@ -71,38 +76,51 @@ export default function Login() {
       .then(data => {
         localStorage.setItem("token", data.token);
         navigate("/account");
+        setLoading(false);
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => { 
+        showErrorMessage(true);
+        setLoading(false);
+      });
     }
 
   return (
-      <Container maxWidth="sm">
+    <Container maxWidth="sm">
       <div className='form'>
-
+        <h1 className="text-center my-2">Login now</h1>
         <Box
-        component="form"
-        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
-        noValidate
-        autoComplete="off"
+          component="form"
+          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+          noValidate
+          autoComplete="off"
         >
-            <TextField
-              id="username"
-              label="username"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
-            />
-            <TextField
-              id="password"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
-            />
+          <TextField
+            id="username"
+            label="username"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event)}
+          />
         </Box>
-        <Button variant="contained" onClick={() => handleClick()}>login</Button>
-        <Button variant="contained" onClick={() =>   navigate('/register')}>Register</Button>
-        <Button variant="contained" onClick={() => getUsers()}>get users</Button>
+        <div className="px-2 mt-3">
+          <Button variant="contained" onClick={() => handleClick()}>login</Button>
+          {loading && (
+            <div className="spinner-border" role="status">
+              <span className="sr-only"></span>
+            </div>
+          )}
+          {errorMessage &&( 
+            <p className="text-danger">
+              Username or password is wrong
+            </p>
+          )}
+        </div>
       </div>
-      </Container>
-
+    </Container>
   );
 }

@@ -28,3 +28,7 @@ button {
 .send {
   margin-top: 30px;
 }
+
+.page {
+  height: 100vh;
+}
