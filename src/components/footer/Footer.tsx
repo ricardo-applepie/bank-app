@@ -8,7 +8,7 @@ export default function Footer() {
         <Container>
           <div className="d-flex justify-content-between">
             <div className="w-25">
-             <a className="navbar-brand fw-bold" href="#">Milleon</a>
+             <span className="navbar-brand fw-bold">Milleon</span>
              <p>
                We are your competent & experienced contact in the field of online banking.
              </p>
