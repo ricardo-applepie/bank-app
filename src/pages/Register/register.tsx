@@ -52,8 +52,12 @@ export default function Register() {
         <h1 className="text-center my-2">Register now</h1>
           <Box
             component="form"
-            sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
-            noValidate
+            sx={{
+              '& .MuiTextField-root': {
+                m: 1,
+                width: { xs: '100%', md: '25ch' }, // Adjust as needed
+              },
+            }}            noValidate
             autoComplete="off"
           >
               <TextField
