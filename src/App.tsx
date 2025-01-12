@@ -17,7 +17,7 @@ function App() {
       navigate('/register')
     }
 
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="App">
