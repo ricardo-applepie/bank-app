@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Button, Container } from '@mui/material';
+import React from 'react';
+import { Container } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Footer() {
