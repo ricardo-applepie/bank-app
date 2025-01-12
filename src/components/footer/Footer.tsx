@@ -1,14 +1,7 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Footer() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const isLogin = location.pathname === "/login";
-  const isResgister = location.pathname === "/register";
-
 
   return (
       <footer className="navbar navbar-expand-lg navbar-light bg-light">
