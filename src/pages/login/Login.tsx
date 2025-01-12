@@ -90,7 +90,7 @@ export default function Login() {
         <h1 className="text-center my-2">Login now</h1>
         <Box
           component="form"
-          sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+          sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
           noValidate
           autoComplete="off"
         >

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import { Badge, Button, Card, CardActionArea, CardContent, Container, TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
 import MailIcon from '@mui/icons-material/Mail';
