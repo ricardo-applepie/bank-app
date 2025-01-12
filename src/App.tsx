@@ -14,7 +14,7 @@ function App() {
 
     const token = localStorage.getItem('token');
     if(!token) {
-      navigate('/register')
+
     }
 
   }, [navigate]);
