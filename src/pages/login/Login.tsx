@@ -18,37 +18,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const getUsers = () => {
-  const url = 'https://bank-backend-nh15.onrender.com/users'; // Replace with your URL
 
-  // Retrieve the token from localStorage
-   const authToken = localStorage.getItem('token'); // Use your custom token name
-
-    // Set up the fetch options, including the Authorization header
-    const options = {
-    method: 'GET', // or 'POST', depending on your API
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `${authToken}` // Include the token in the Authorization header
-    }
-    };
-
-    // Make the fetch request
-    fetch(url, options)
-    .then((res) => {
-        if (!res.ok) {
-        throw new Error('Network response was not ok ' + res.statusText);
-        }
-        return res.json(); // Convert response to JSON
-    })
-    .then((data) => {
-        console.log(data); // Handle the data received from the API
-    })
-    .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
-
- }
   const handleClick = () => {
     const formKeys = Object.keys(formData);
     setLoading(true);
