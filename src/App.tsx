@@ -5,7 +5,7 @@ import Login from './pages/login/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './pages/dashboard/dashboard';
 import Navbar from './components/navbar/Navbar';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 
 function App() {
   const navigate  = useNavigate();
@@ -34,7 +34,7 @@ function App() {
           <Route path="/account" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -115,16 +115,16 @@ function Dashboard() {
                 const { firstName, lastName } = transaction.sender;
                 if(transaction.receiverId === userId) {
                   return (
-                  <li className="list-group-item d-flex justify-content-between py-4">
+                  <li className="list-group-item d-flex justify-content-between py-4 px-4">
                     <div><span>{firstName}</span> <span>{lastName}</span></div>
-                    <div><span className="reciver-amount">{transaction.amount}</span></div>
+                    <div><span className="reciver-amount">{transaction.amount} €</span></div>
                   </li>
                   )
                 } else {
                   return (
-                    <li className="list-group-item d-flex justify-content-between py-4">
+                    <li className="list-group-item d-flex justify-content-between py-4 px-4">
                       <div><span>{firstName}</span> <span>{lastName}</span></div>
-                      <div><span >- {transaction.amount}</span></div>
+                      <div><span >- {transaction.amount} €</span></div>
                     </li>                        
                   )
                 }
@@ -140,7 +140,7 @@ function Dashboard() {
                   {users?.map((user: any) => (
                       <ul>
                       <li 
-                          onClick={() => setSelectedRecieverId(user.userId)}
+                        onClick={() => setSelectedRecieverId(user.userId)}
                       > 
                       <span>{user.firstName}</span> <span>{user.lastName}</span> <span>{user.userId === selectedRecieverId && "_/"}</span>
                       </li>
