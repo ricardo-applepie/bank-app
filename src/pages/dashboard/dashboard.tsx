@@ -94,16 +94,17 @@ function Dashboard() {
   const { users, transactions, userId } = account;
 
   return (
+    <div className="dashboard">
       <Container maxWidth="sm">
         <div className="mt-2">
           <h2>My account</h2>
 
-          <Card variant="outlined">
+          <Card variant="outlined" className="dashboard-account">
             <CardActionArea>
               <CardContent>
-                <h2>{account?.firstName} {account.lastName}</h2>
-                <h2>{account.email}</h2>
-                <p> Account Balance: <span>{account.balance}</span> € </p> 
+                <h2 className="dark-text">{account?.firstName} {account.lastName}</h2>
+                <h2 className="dark-text">{account.email}</h2>
+                <p className="dark-text"> Account Balance: <span>{account.balance}</span> € </p> 
               </CardContent>   
             </CardActionArea>  
           </Card>
@@ -164,6 +165,7 @@ function Dashboard() {
    
         </div>
       </Container>
+    </div>
   );
 }
 

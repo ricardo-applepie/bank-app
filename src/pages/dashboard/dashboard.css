@@ -3,3 +3,14 @@
   background-color: #d4edda;
   border-radius: 12px;
 }
+.dashboard {
+  background-color: #333333;
+}
+
+.dashboard h1, h2, h3 {
+   color: #fff;
+}
+
+.dark-text {
+  color: #000;
+}
