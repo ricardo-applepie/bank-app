@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
-import { Button, Card, CardActionArea, CardContent, Container, TextField } from '@mui/material';
-
+import { Button, Card, Container, TextField } from '@mui/material';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 interface Transaction {
   id: number;
@@ -83,6 +83,7 @@ function Dashboard() {
     })
     .then((data) => {
         setAccount(data);
+        setAmount(0);
     })
     .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
@@ -99,14 +100,10 @@ function Dashboard() {
         <div className="mt-2">
           <h2>My account</h2>
 
-          <Card variant="outlined" className="dashboard-account">
-            <CardActionArea>
-              <CardContent>
-                <h2 className="dark-text">{account?.firstName} {account.lastName}</h2>
-                <h2 className="dark-text">{account.email}</h2>
-                <p className="dark-text"> Account Balance: <span>{account.balance}</span> € </p> 
-              </CardContent>   
-            </CardActionArea>  
+          <Card variant="outlined" className="dashboard-account py-3 px-3">
+            <h2 className="dark-text">{account?.firstName} {account.lastName}</h2>
+            <h2 className="dark-text">{account.email}</h2>
+            <p className="dark-text"> Account Balance: <span>{account.balance}</span> € </p> 
           </Card>
           <div className="my-2">
             <h3>Transactions</h3>
@@ -131,36 +128,41 @@ function Dashboard() {
               })}
             </ul>
           </div>
-
-          <Card variant="outlined" className='send'>
-            <CardActionArea>
-              <CardContent>
-                <h1>Users:-</h1>
-                <div>
-                  {users?.map((user: any) => (
-                      <ul>
-                      <li 
-                        onClick={() => setSelectedRecieverId(user.userId)}
-                      > 
-                      <span>{user.firstName}</span> <span>{user.lastName}</span> <span>{user.userId === selectedRecieverId && "_/"}</span>
-                      </li>
-                      </ul>
-                  ))}
-                  {selectedRecieverId && (
-                  <div className='flex'>  
-                      <TextField
-                      id="amount"
-                      label="amount"
-                      type="number"
-                      autoComplete="current-password"
-                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
-                      />
-                      <Button variant="contained" onClick={() => handleSend()}>send</Button>
+  
+          <Card variant="outlined" className='send py-3 px-3'>
+            <h3 className="dark-text">Select user to send money</h3>
+            <div>
+              {users && users?.filter((user: any) => user.firstName).map((user: any) => (
+                <ul className="list-group">
+                  <li 
+                    className="cursor-pointer list-group-item mb-3"
+                    onClick={() => setSelectedRecieverId(user.userId)}
+                  > 
+                  <div className="d-flex justify-content-between">
+                   <div><span>{user.firstName}</span> <span>{user.lastName}</span> </div>
+                   <div><span>{user.userId === selectedRecieverId && (<CheckBoxIcon />)}</span></div>
                   </div>
-                  )}
-                </div>
-              </CardContent>   
-            </CardActionArea>  
+                  </li>
+                </ul>
+              ))}
+              {selectedRecieverId && (
+              <div className="d-flex justify-content-between">  
+                <TextField
+                  id="amount"
+                  label="Enter amount"
+                  type="number"
+                  autoComplete="current-password"
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
+                />
+                <Button 
+                  variant="contained" 
+                  onClick={() => handleSend()}
+                >
+                  send
+                </Button>
+              </div>
+              )}
+            </div>
           </Card>
    
         </div>

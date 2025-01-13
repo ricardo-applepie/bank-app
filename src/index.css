@@ -30,6 +30,19 @@ li {
 footer {
   margin-top: auto;  /* Pushes the footer to the bottom of the page */
 }
+
 ul > li {
   list-style: none;
+}
+
+button {
+  background-color: #28a745 !important;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
