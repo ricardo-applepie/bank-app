@@ -53,12 +53,14 @@ export default function Login() {
         showErrorMessage(true);
         setLoading(false);
       });
-    }
+  }
+
   useEffect(() => {
     if(token) {
       navigate("/account");
     }
-  }, []);
+  }, [navigate]);
+
   return (
     <Container maxWidth="sm">
       <div className='form'>

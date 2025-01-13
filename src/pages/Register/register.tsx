@@ -51,7 +51,7 @@ export default function Register() {
     if(token) {
       navigate("/account");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <Container maxWidth="sm">
