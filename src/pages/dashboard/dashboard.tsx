@@ -16,6 +16,7 @@ interface Transaction {
   updatedAt: string; // Same as createdAt, can be Date type as well
   receiverId: string;
   senderId: string;
+  accountId: string;
   sender: {
     firstName: string;
     lastName: string;
@@ -23,6 +24,9 @@ interface Transaction {
   receiver: {
     firstName: string;
     lastName: string;
+  }
+  receiverAccount: {
+    accountId: string;
   }
 }
 
@@ -97,7 +101,7 @@ function Dashboard() {
   }, []);
 
 
-  const { users, transactions, userId } = account;
+  const { users, transactions, accountId } = account;
 
   return (
     <div className="dashboard">
@@ -140,8 +144,11 @@ function Dashboard() {
             <h3>Transactions</h3>
             <ul className="list-group">
               {transactions && transactions.map((transaction: Transaction) => {
-                const { firstName, lastName } = transaction.sender;
-                if(transaction.receiverId === userId) {
+                const { receiver } = transaction;
+                const { firstName, lastName } = receiver;
+
+                if(transaction.receiverAccount.accountId === accountId) {
+                  const { firstName, lastName } = transaction.sender;
                   return (
                   <li className="list-group-item d-flex justify-content-between py-4 px-4">
                     <div><span>{firstName}</span> <span>{lastName}</span></div>
