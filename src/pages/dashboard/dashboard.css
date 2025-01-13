@@ -14,3 +14,21 @@
 .dark-text {
   color: #000 !important;
 }
+
+.dashboard-option {
+  position: relative;
+  background: #28a745;
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+}
+.dashboard-option svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard-options {
+  color: #fff;
+}

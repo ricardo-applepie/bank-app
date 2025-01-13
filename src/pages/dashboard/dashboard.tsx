@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import { Button, Card, Container, TextField } from '@mui/material';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import AddIcon from '@mui/icons-material/Add';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+
 
 interface Transaction {
   id: number;
@@ -105,6 +110,32 @@ function Dashboard() {
             <h2 className="dark-text">{account.email}</h2>
             <p className="dark-text"> Account Balance: <span>{account.balance}</span> € </p> 
           </Card>
+          <div className="dashboard-options my-4 px-5 d-flex justify-content-between">
+            <div className="d-flex flex-column align-items-center">
+              <div className="dashboard-option">
+                <ArrowRightAltIcon />
+              </div>
+              <div>Send money</div>
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <div className="dashboard-option">
+                <AddIcon />
+              </div>
+              <div>Add money</div>
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <div className="dashboard-option">
+                <PermContactCalendarIcon />
+              </div>
+              <div>Users</div>
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <div className="dashboard-option">
+                <EventAvailableIcon />
+              </div>
+              <div>Bank Statements</div>
+            </div>
+          </div>
           <div className="my-2">
             <h3>Transactions</h3>
             <ul className="list-group">
@@ -146,21 +177,21 @@ function Dashboard() {
                 </ul>
               ))}
               {selectedRecieverId && (
-              <div className="d-flex justify-content-between">  
-                <TextField
-                  id="amount"
-                  label="Enter amount"
-                  type="number"
-                  autoComplete="current-password"
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
-                />
-                <Button 
-                  variant="contained" 
-                  onClick={() => handleSend()}
-                >
-                  send
-                </Button>
-              </div>
+                <div className="d-flex justify-content-between">  
+                  <TextField
+                    id="amount"
+                    label="Enter amount"
+                    type="number"
+                    autoComplete="current-password"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
+                  />
+                  <Button 
+                    variant="contained" 
+                    onClick={() => handleSend()}
+                  >
+                    send
+                  </Button>
+                </div>
               )}
             </div>
           </Card>
