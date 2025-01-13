@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Button, Card, CardActionArea, CardContent, Container, TextField } from '@mui/material';
-import { useNavigate } from 'react-router';
-import MailIcon from '@mui/icons-material/Mail';
+import './dashboard.css';
+import { Button, Card, CardActionArea, CardContent, Container, TextField } from '@mui/material';
+
+
+interface Transaction {
+  id: number;
+  amount: string;
+  type: 'debit' | 'credit'; // You can expand this if there are more types in the future
+  createdAt: string; // You can also use Date type if you'd prefer working with Date objects
+  updatedAt: string; // Same as createdAt, can be Date type as well
+  receiverId: string;
+  senderId: string;
+  sender: {
+    firstName: string;
+    lastName: string;
+  }
+  receiver: {
+    firstName: string;
+    lastName: string;
+  }
+}
 
 function Dashboard() {
   const [account, setAccount] = useState<any>({});
@@ -9,12 +27,7 @@ function Dashboard() {
 
   const [selectedRecieverId, setSelectedRecieverId] = useState("");
 
-  const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate('/login');
-  }
 
   const handleSend = () => {
    const url = 'https://bank-backend-nh15.onrender.com/create'; // Replace with your URL
@@ -69,7 +82,6 @@ function Dashboard() {
         return res.json(); // Convert response to JSON
     })
     .then((data) => {
-        console.log(data); // Handle the data received from the API
         setAccount(data);
     })
     .catch((error) => {
@@ -79,57 +91,72 @@ function Dashboard() {
   }, []);
 
 
-  const notificationLength = account.notifications?.length;
-  const {users} = account;
+  const { users, transactions, userId } = account;
 
   return (
       <Container maxWidth="sm">
-        <div className="">
-           <div className='flex'>
-              <Badge color="secondary" badgeContent={notificationLength}>
-                <MailIcon />
-              </Badge>
-              <Button variant="contained" onClick={() => logout()}>Logout</Button>
-           </div>
-          <h1>My account</h1>
+        <div className="mt-2">
+          <h2>My account</h2>
 
           <Card variant="outlined">
             <CardActionArea>
               <CardContent>
-
                 <h2>{account?.firstName} {account.lastName}</h2>
-                <h3>{account.email}</h3>
-                <p> Balance:  <span>{account.balance}</span> € </p> 
+                <h2>{account.email}</h2>
+                <p> Account Balance: <span>{account.balance}</span> € </p> 
               </CardContent>   
             </CardActionArea>  
           </Card>
+          <div className="my-2">
+            <h3>Transactions</h3>
+            <ul className="list-group">
+              {transactions && transactions.map((transaction: Transaction) => {
+                const { firstName, lastName } = transaction.sender;
+                if(transaction.receiverId === userId) {
+                  return (
+                  <li className="list-group-item d-flex justify-content-between py-4">
+                    <div><span>{firstName}</span> <span>{lastName}</span></div>
+                    <div><span className="reciver-amount">{transaction.amount}</span></div>
+                  </li>
+                  )
+                } else {
+                  return (
+                    <li className="list-group-item d-flex justify-content-between py-4">
+                      <div><span>{firstName}</span> <span>{lastName}</span></div>
+                      <div><span >- {transaction.amount}</span></div>
+                    </li>                        
+                  )
+                }
+              })}
+            </ul>
+          </div>
 
           <Card variant="outlined" className='send'>
             <CardActionArea>
               <CardContent>
                 <h1>Users:-</h1>
                 <div>
-                    {users?.map((user: any) => (
-                        <ul>
-                        <li 
-                            onClick={() => setSelectedRecieverId(user.userId)}
-                        > 
-                        <span>{user.firstName}</span> <span>{user.lastName}</span> <span>{user.userId === selectedRecieverId && "_/"}</span>
-                        </li>
-                        </ul>
-                    ))}
-                    {selectedRecieverId && (
-                    <div className='flex'>  
-                        <TextField
-                        id="amount"
-                        label="amount"
-                        type="number"
-                        autoComplete="current-password"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
-                        />
-                        <Button variant="contained" onClick={() => handleSend()}>send</Button>
-                    </div>
-                    )}
+                  {users?.map((user: any) => (
+                      <ul>
+                      <li 
+                          onClick={() => setSelectedRecieverId(user.userId)}
+                      > 
+                      <span>{user.firstName}</span> <span>{user.lastName}</span> <span>{user.userId === selectedRecieverId && "_/"}</span>
+                      </li>
+                      </ul>
+                  ))}
+                  {selectedRecieverId && (
+                  <div className='flex'>  
+                      <TextField
+                      id="amount"
+                      label="amount"
+                      type="number"
+                      autoComplete="current-password"
+                      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setAmount(event.target.value)}
+                      />
+                      <Button variant="contained" onClick={() => handleSend()}>send</Button>
+                  </div>
+                  )}
                 </div>
               </CardContent>   
             </CardActionArea>  

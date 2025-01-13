@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './register.css';
@@ -9,6 +9,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({firstName: "", lastName: "", email: "", phone: "", password: ""});
   const [loading, setLoading] = useState(false);
+  const token  = localStorage.getItem("token");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
      console.log(formData)
@@ -45,6 +46,12 @@ export default function Register() {
       })
       .catch(error => console.error('Error:', error));
   }
+
+  useEffect(() => {
+    if(token) {
+      navigate("/account");
+    }
+  }, []);
 
   return (
     <Container maxWidth="sm">

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
 
 code {
@@ -13,9 +14,23 @@ code {
 }
 
 .page {
-  height: 80vh;
+  min-height: 80vh;
+  padding-bottom: 30px;
 }
 
 li {
   text-decoration: none;
+}
+
+.spinner-border {
+  margin: 0 25px 0 20px;
+  width: 20px;
+  height: 20px;
+}
+
+footer {
+  margin-top: auto;  /* Pushes the footer to the bottom of the page */
+}
+ul > li {
+  list-style: none;
 }

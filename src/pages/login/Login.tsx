@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import '../Register/register.css';
@@ -9,6 +9,7 @@ export default function Login() {
   const [formData, setFormData] = useState({username: "", password: ""});
   const [loading, setLoading] = useState(false);
   const [errorMessage, showErrorMessage ] = useState(false);
+  const token  = localStorage.getItem("token");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
      const value = event.target.value;
@@ -53,11 +54,15 @@ export default function Login() {
         setLoading(false);
       });
     }
-
+  useEffect(() => {
+    if(token) {
+      navigate("/account");
+    }
+  }, []);
   return (
     <Container maxWidth="sm">
       <div className='form'>
-        <h1 className="text-center my-2">Login now</h1>
+        <h1 className="text-center my-2">Login Now</h1>
         <Box
           component="form"
           sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
