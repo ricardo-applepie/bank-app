@@ -102,15 +102,15 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <Container maxWidth="sm">
-        <div className="mt-2">
-          <h2>My account</h2>
+        <div>
+          <h2 className="py-4">My account</h2>
 
           <Card variant="outlined" className="dashboard-account py-3 px-3">
             <h2 className="dark-text">{account?.firstName} {account.lastName}</h2>
             <h2 className="dark-text">{account.email}</h2>
             <p className="dark-text"> Account Balance: <span>{account.balance}</span> € </p> 
           </Card>
-          <div className="dashboard-options my-4 px-5 d-flex justify-content-between">
+          <div className="dashboard-options my-4 px-1 px-md-5 d-flex justify-content-between">
             <div className="d-flex flex-column align-items-center">
               <div className="dashboard-option">
                 <ArrowRightAltIcon />
@@ -133,7 +133,7 @@ function Dashboard() {
               <div className="dashboard-option">
                 <EventAvailableIcon />
               </div>
-              <div>Bank Statements</div>
+              <div>Statements</div>
             </div>
           </div>
           <div className="my-2">
